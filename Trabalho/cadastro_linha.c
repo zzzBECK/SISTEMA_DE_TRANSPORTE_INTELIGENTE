@@ -1,7 +1,13 @@
+struct linha
+{
+    int id;
+};
+
+
 void cadastroLinha()
 {
     FILE *file;
-    int id;
+    struct linha L;
 
     file = fopen("linhas.txt", "a");
 
@@ -9,9 +15,9 @@ void cadastroLinha()
     {
         printf("Digite o numero da linha: ");
         fflush(stdin);
-        scanf("%d", &id);
+        scanf("%d", &L.id);
         
-        fprintf(file, "%d\n", id);
+        fprintf(file, "%d\n", L.id);
 
         fclose(file);
     }

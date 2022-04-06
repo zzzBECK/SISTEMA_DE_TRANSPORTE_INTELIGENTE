@@ -1,10 +1,16 @@
 #include <stdio.h>
 
+struct parada
+{
+    int id;
+    float x, y;
+};
+
+
 void cadastroParada()
 {
     FILE *file;
-    float X, Y;
-    int id;
+    struct parada P;
 
     file = fopen("paradas.txt", "a");
 
@@ -12,15 +18,15 @@ void cadastroParada()
     {
         printf("Digite o numero da parada: ");
         fflush(stdin);
-        scanf("%d", &id);
+        scanf("%d", &P.id);
         
         printf("Coordenada X: ");
-        scanf("%f", &X);
+        scanf("%f", &P.x);
 
         printf("Coordenada Y: ");
-        scanf("%f", &Y);
+        scanf("%f", &P.y);
         
-        fprintf(file, "%d;%.2f;%.2f\n", id, X, Y);
+        fprintf(file, "%d;%.2f;%.2f\n", P.id, P.x, P.y);
 
         fclose(file);
     }
