@@ -1,29 +1,16 @@
 #include <stdio.h>
 
-int main ()
+int main()
 {
-    double n, sum;
+  char vet[10];
+  int DD[1], MM[1], AA[1];
 
-    scanf("%lf", &n);
+  scanf("%d/%d/%d", &DD, &MM, &AA);
 
-    if (n > 4500)
-    {
-        sum = (n - 4500) * 0.28 + (4500 - 3000.01) * 0.18 + (3000 - 2000.01) * 0.08;
-    }
-    else if (n > 3000 && n <= 4500)
-    {
-        sum = (n - 3000) * 0.18 + (3000 - 2000.01) * 0.08;
-    }
-    else if (n > 2000 && n <= 3000)
-    {
-        sum = (n - 2000) * 0.08;
-    }
-    else if (n <= 2000)
-        sum = 0;
-    
-    if (sum == 0)
-        printf("Isento\n");
-    else
-        printf("R$ %.2f\n", sum);
-    return 0;
+  printf("%.2d/%.2d/%.2d\n", *MM, *DD, *AA);
+  printf("%.2d/%.2d/%.2d\n", *AA, *MM, *DD);
+  printf("%.2d-%.2d-%.2d\n", *DD, *MM, *AA);
+
+
+  return 0;
 }
