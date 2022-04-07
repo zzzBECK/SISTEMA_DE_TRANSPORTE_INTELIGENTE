@@ -30,10 +30,10 @@ void cadastroParada()
         
         do
         {
-            printf("Coordenada X: ");
+            printf("Latitude: ");
             scanf("%f", &P.x);
 
-            printf("Coordenada Y: ");
+            printf("Longitude: ");
             scanf("%f", &P.y);
 
             if (checkCordParada(P.x, P.y))
