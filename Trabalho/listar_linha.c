@@ -19,4 +19,6 @@ void listarLinha()
         }
 
     }
+    
+    fclose(file);
 }

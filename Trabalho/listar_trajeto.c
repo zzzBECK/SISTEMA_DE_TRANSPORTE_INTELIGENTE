@@ -23,6 +23,7 @@ void passaLinha(int id)
         }
     }
 
+    fclose(file);
 }
 
 void passaParada(int id)
@@ -42,4 +43,6 @@ void passaParada(int id)
             }   
         }
     }
+    
+    fclose(file);
 }
