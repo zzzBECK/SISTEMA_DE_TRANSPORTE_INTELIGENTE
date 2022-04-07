@@ -24,3 +24,22 @@ void passaLinha(int id)
     }
 
 }
+
+void passaParada(int id)
+{
+    FILE *file;
+    struct trajeto2 T;
+    
+    file = fopen("trajetos.txt", "r");
+
+    if (file != NULL)
+    {
+        while (fscanf(file, "%d;%d;%d;%d", &T.parada, &T.linha, &T.hora, &T.min) != EOF)
+        {
+            if (T.linha== id)
+            {
+                printf(" (Parada: %d) ", T.parada);
+            }   
+        }
+    }
+}

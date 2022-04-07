@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "check_linha.c"
 
 struct linha
 {
@@ -15,11 +16,21 @@ void cadastroLinha()
 
     if(file != NULL)
     {
-        printf("Digite o numero da linha: ");
-        fflush(stdin);
-        scanf("%d", &L.id);
+        do
+        {
+            printf("Digite o numero da linha: ");
+            fflush(stdin);
+            scanf("%d", &L.id);
+
+            if (checkLinha(L.id))
+                printf("Linha ja cadastrada, digite novamente\n");
+
+        } while (checkLinha(L.id));
+
         
         fprintf(file, "%d\n", L.id);
+
+        printf("Linha cadastrada com sucesso!\n");
 
         fclose(file);
     }

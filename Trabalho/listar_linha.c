@@ -13,7 +13,9 @@ void listarLinha()
 
         while (fscanf(file, "%d", &L.id) != EOF)
         {
-            printf("Id: %d\n", L.id);
+            printf("Id: %d", L.id);
+            passaParada(L.id);
+            printf("\n");
         }
 
     }

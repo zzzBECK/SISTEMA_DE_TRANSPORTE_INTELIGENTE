@@ -1,4 +1,4 @@
-#include "check_linha.c"
+#include <stdio.h>
 
 struct trajeto
 {
