@@ -1,3 +1,5 @@
+#include "listar_trajeto.c"
+
 void listarParada()
 {
     FILE *file;
@@ -11,7 +13,10 @@ void listarParada()
 
         while (fscanf(file, "%d;%f;%f", &P.id, &P.x, &P.y) != EOF)
         {
-            printf("Id: %d  Latitude: %.2f  Longitude: %.2f\n", P.id, P.x, P.y);
+            printf("Id: %d  Latitude: %.2f  Longitude: %.2f", P.id, P.x, P.y);
+            passaLinha(P.id);
+            printf("\n");
+            
         }
 
     }

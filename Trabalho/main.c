@@ -1,10 +1,10 @@
-#include "menu.c"
+#include "sgpl_menu.c"
 
 int main()
 {
     while (1)
     {
-        if (Menu() == 0)
+        if (sgplMenu() == 0)
             break;
     }
     

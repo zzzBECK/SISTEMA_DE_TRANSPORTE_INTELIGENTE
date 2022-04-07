@@ -1,9 +1,15 @@
-#include "check.c"
+#include "check_linha.c"
+
+struct trajeto
+{
+    int parada, linha, hora, min;
+};
+
 
 void cadastroTrajeto()
 {
     FILE *file;
-    int parada, linha, hora, min;
+    struct trajeto T;    
 
     file = fopen("trajetos.txt", "a");
 
@@ -13,9 +19,9 @@ void cadastroTrajeto()
         {
             printf("Digite o numero da parada: ");
             fflush(stdin);
-            scanf("%d", &parada);
+            scanf("%d", &T.parada);
 
-            if (checkParada(parada))
+            if (checkIdParada(T.parada))
             {
                 printf("OK\n");
             }
@@ -24,7 +30,7 @@ void cadastroTrajeto()
                 printf("Essa parada nao existe, digite novamente\n");
             }
 
-        } while (!checkParada(parada));
+        } while (!checkIdParada(T.parada));
 
 
         do
@@ -32,9 +38,9 @@ void cadastroTrajeto()
 
             printf("Digite o numero da linha: ");
             fflush(stdin);
-            scanf("%d", &linha);
+            scanf("%d", &T.linha);
 
-            if (checkLinha(linha))
+            if (checkLinha(T.linha))
             {
                 printf("OK\n");
             }
@@ -43,21 +49,23 @@ void cadastroTrajeto()
                 printf("Essa linha nao existe, digite novamente\n");
             }
 
-        } while (!checkLinha(linha));
+        } while (!checkLinha(T.linha));
 
         printf("Digite o horario (00:00): ");
 
         do
         {
             fflush(stdin);
-            scanf("%d:%d", &hora, &min);
-            if (hora < 0 || hora > 24 || min < 0 || min > 59)
+            scanf("%d:%d", &T.hora, &T.min);
+            if (T.hora < 0 || T.hora > 23 || T.min < 0 || T.min > 59)
                 printf("Esse horario nao existe, digite novamente: ");
 
-        } while (hora < 0 || hora > 24 || min < 0 || min > 59);
+        } while (T.hora < 0 || T.hora > 23 || T.min < 0 || T.min > 59);
 
 
-        fprintf(file, "%d;%d;%.2d;%.2d\n", parada, linha, hora, min);
+        fprintf(file, "%d;%d;%.2d;%.2d\n", T.parada, T.linha, T.hora, T.min);
+
+        printf("Trajeto cadastrado com sucesso!\n");
 
     }
 

@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "cadastro_parada.c"
@@ -12,7 +13,7 @@
 #define LISTAR_LINHAS 5
 #define SAIR 8
 
-int Menu()
+int sgplMenu()
 {
     int n;
 
@@ -24,7 +25,7 @@ int Menu()
             "6) Excluir Parada de Onibus\n"
             "7) Excluir Linha de Onibus\n"
             "8) Encerrar Programa\n"
-            "\nInsira o valor desejado: ");
+            "\nInsira o valor da opcao: ");
 
     do
     {
@@ -36,7 +37,7 @@ int Menu()
 
     }while (n < 1 || n > 8);
 
-    system("cls");
+    system("cls || clear");
 
     switch (n)
     {

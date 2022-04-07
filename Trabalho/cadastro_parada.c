@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include "check_id.c"
+#include "check_cord.c"
 
 struct parada
 {
@@ -16,17 +18,32 @@ void cadastroParada()
 
     if(file != NULL)
     {
-        printf("Digite o numero da parada: ");
-        fflush(stdin);
-        scanf("%d", &P.id);
-        
-        printf("Coordenada X: ");
-        scanf("%f", &P.x);
+        do
+        {
+            printf("Digite o numero da parada: ");
+            fflush(stdin);
+            scanf("%d", &P.id);
 
-        printf("Coordenada Y: ");
-        scanf("%f", &P.y);
+            if (checkIdParada(P.id))
+                printf("Parada ja cadastrada, digite novamente\n");
+        } while(checkIdParada(P.id));
+        
+        do
+        {
+            printf("Coordenada X: ");
+            scanf("%f", &P.x);
+
+            printf("Coordenada Y: ");
+            scanf("%f", &P.y);
+
+            if (checkCordParada(P.x, P.y))
+                printf("Posicao cadastrada com outra parada, digite novamente\n");
+
+        } while (checkCordParada(P.x, P.y));
         
         fprintf(file, "%d;%.2f;%.2f\n", P.id, P.x, P.y);
+
+        printf("Cadastrado com sucesso!\n");
 
         fclose(file);
     }
