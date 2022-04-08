@@ -14,7 +14,7 @@
 
 int sgplMenu()
 {
-    int n;
+    int n, aux;
 
     printf ("\n1) Cadastrar Parada de Onibus\n"
             "2) Cadastrar Linha de Onibus\n"
@@ -28,13 +28,14 @@ int sgplMenu()
 
     do
     {
-        scanf("%d", &n);
+        fflush(stdin);
+        aux = scanf("%d", &n);
 
-        if (n < 1 || n > 8)
+        if (aux == 0 || n < 1 || n > 8)
             printf("Valor invalido, digite novamente: ");
 
 
-    }while (n < 1 || n > 8);
+    }while (aux == 0 || n < 1 || n > 8);
 
     system("cls || clear");
 

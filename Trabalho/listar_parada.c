@@ -13,11 +13,14 @@ void listarParada()
 
         while (fscanf(file, "%d;%f;%f", &P.id, &P.x, &P.y) != EOF)
         {
-            printf("Id: %d  Latitude: %.2f  Longitude: %.2f", P.id, P.x, P.y);
+            printf("Id: %d  Latitude: %.3f  Longitude: %.3f", P.id, P.x, P.y);
             passaLinha(P.id);
             printf("\n");
             
         }
-
+    }
+    else
+    {
+        printf("Nao foi possivel abrir o arquivo, cadastre uma parada antes!\n");
     }
 }

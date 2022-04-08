@@ -17,7 +17,10 @@ void listarLinha()
             passaParada(L.id);
             printf("\n");
         }
-
+    }
+    else
+    {
+        printf("Nao foi possivel abrir o arquivo, cadastre uma linha antes!\n");
     }
     
     fclose(file);

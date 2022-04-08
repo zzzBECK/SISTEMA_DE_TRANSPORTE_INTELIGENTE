@@ -26,7 +26,12 @@ void cadastroParada()
 
             if (checkIdParada(P.id))
                 printf("Parada ja cadastrada, digite novamente\n");
-        } while(checkIdParada(P.id));
+                
+            
+            if (P.id <= 0)
+                printf("Essa parada nao existe, digite novamente\n");
+
+        } while(checkIdParada(P.id) || P.id <= 0);
         
         do
         {
@@ -41,7 +46,7 @@ void cadastroParada()
 
         } while (checkCordParada(P.x, P.y));
         
-        fprintf(file, "%d;%.2f;%.2f\n", P.id, P.x, P.y);
+        fprintf(file, "%d;%.3f;%.3f\n", P.id, P.x, P.y);
 
         printf("Cadastrado com sucesso!\n");
 
