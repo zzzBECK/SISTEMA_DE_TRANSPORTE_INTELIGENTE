@@ -6,11 +6,11 @@ int checkLinha(int id)
     FILE *file;
     int tamanho = 0, numeros[TAM_MAX];
 
-    file = fopen("linhas.txt", "r");
+    file = fopen("linhas.txt", "r");                                // abre o arquivo para leitura
 
     if (file != NULL)
     {
-        while (fscanf(file, "%d", &numeros[tamanho]) != EOF)
+        while (fscanf(file, "%d", &numeros[tamanho]) != EOF)        // loop para armazenar as linhas em um vetor
         {
             tamanho++;
         }
@@ -20,7 +20,7 @@ int checkLinha(int id)
 
     for (int i = 0; i < tamanho; i++)
     {
-        if (id == numeros[i])
+        if (id == numeros[i])                                       // verifica se a linha digitada é igual à alguma linha contida no vetor
             return 1;
     }
 

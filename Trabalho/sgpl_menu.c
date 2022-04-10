@@ -16,7 +16,7 @@ int sgplMenu()
 {
     int n, aux;
 
-    printf ("\n1) Cadastrar Parada de Onibus\n"
+    printf ("\n1) Cadastrar Parada de Onibus\n" // mostra o menu no console
             "2) Cadastrar Linha de Onibus\n"
             "3) Cadastrar Trajeto\n"
             "4) Listar Paradas Cadastradas\n"
@@ -35,7 +35,7 @@ int sgplMenu()
             printf("Valor invalido, digite novamente: ");
 
 
-    }while (aux == 0 || n < 1 || n > 8);
+    }while (aux == 0 || n < 1 || n > 8); // verifica se o valor esta dentro do intervalo ou se não é um numero
 
     system("cls || clear");
 
@@ -43,40 +43,40 @@ int sgplMenu()
     {
         case CADASTRAR_PARADA:
 
-            cadastroParada();
+            cadastroParada();   // chama a função do cadastro_parada.c
             return 1;
 
         case CADASTRAR_LINHA:
 
-            cadastroLinha();
+            cadastroLinha();    // chama a função do cadastro_linha.c
             return 1;
 
         case CADASTRAR_TRAJETO:
 
-            cadastroTrajeto();
+            cadastroTrajeto();  // chama a função do cadastro_trajeto.c
             return 1;
 
         case LISTAS_PARADA:
 
-            listarParada();
+            listarParada(); // chama a função do listar_parada.c
             return 1;
 
         case LISTAR_LINHAS:
 
-            listarLinha();
+            listarLinha();  // chama a função do listar_parada.c
             return 1;
 
         case 6:
 
-            printf("Not Available\n");
+            printf("Not Available\n");  // ainda nao funcionado
             return 1;
 
         case 7:
 
-            printf("Not Available\n");
+            printf("Not Available\n");  // ainda nao funcionado
             return 1;
 
-        case SAIR:
+        case SAIR:  // encerra a execução do programa
 
             return 0;
             

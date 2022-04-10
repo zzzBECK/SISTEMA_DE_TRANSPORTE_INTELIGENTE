@@ -10,12 +10,12 @@ int checkCordParada(float x, float y)
 
     if (file != NULL)
     {
-        while (fscanf(file, "%d;%f;%f", &lixo, &X, &Y) != EOF)
+        while (fscanf(file, "%d;%f;%f", &lixo, &X, &Y) != EOF)  // armazena as cordenadas em variaveis
         {
-            if (x == X && y == Y)
+            if (x == X && y == Y)                               // verifica se elas são iguais as digitadas
             {
                 fclose(file);
-                return 1;
+                return 1;                                       // retorna 1 caso os valores digitados sejam identicos aos cadastrados
             }
         }
     }

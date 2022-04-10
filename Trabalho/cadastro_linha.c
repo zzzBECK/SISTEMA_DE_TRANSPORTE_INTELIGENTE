@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "check_linha.c"
 
-struct linha
+struct linha     // variáveis para as linhas
 {
     int id;
 };
@@ -12,7 +12,7 @@ void cadastroLinha()
     FILE *file;
     struct linha L;
 
-    file = fopen("linhas.txt", "a");
+    file = fopen("linhas.txt", "a");                                    // abre o arquivo para escrita
 
     if(file != NULL)
     {
@@ -25,14 +25,14 @@ void cadastroLinha()
             if (checkLinha(L.id))
                 printf("Linha ja cadastrada, digite novamente\n");
 
-        } while (checkLinha(L.id));
+        } while (checkLinha(L.id));                                     // fumcao que verifica se já tem a linha cadastrada
 
         
         fprintf(file, "%d\n", L.id);
 
         printf("Linha cadastrada com sucesso!\n");
 
-        fclose(file);
+        fclose(file);                                                   // fecha o arquivo
     }
 
 }
