@@ -18,71 +18,79 @@ void cadastroTrajeto()
     {
         do
         {
-            if (aux1 == 3)                          // caso haja mais de 3 tentativas erradas de escolher a parada ele sai do loop
-                break;
 
-            printf("Digite o numero da parada: ");
-            fflush(stdin);
-            scanf("%d", &T.parada);
-
-            if (checkIdParada(T.parada))            // função que verficia se essa parada é cadastrada
+            do
             {
-                printf("OK\n");
-            }
-            else
+                if (aux1 == 3)                          // caso haja mais de 3 tentativas erradas de escolher a parada ele sai do loop
+                    break;
+
+                printf("Digite o numero da parada: ");
+                fflush(stdin);
+                scanf("%d", &T.parada);
+
+                if (checkIdParada(T.parada))            // função que verficia se essa parada é cadastrada
+                {
+                    printf("OK\n");
+                }
+                else
+                {
+                    printf("Essa parada nao existe, digite novamente\n");
+                    aux1++;
+                }
+                
+
+            } while (!checkIdParada(T.parada));
+
+            do
             {
-                printf("Essa parada nao existe, digite novamente\n");
-                aux1++;
-            }
-            
+                if (aux1 == 3 || aux2 == 3)                 // se houver 3 tentativas erradas de escolher a parada ou a linha, sai do loop
+                    break;
 
-        } while (!checkIdParada(T.parada));
+                printf("Digite o numero da linha: ");
+                fflush(stdin);
+                scanf("%d", &T.linha);
 
-        do
-        {
-            if (aux1 == 3 || aux2 == 3)                 // se houver 3 tentativas erradas de escolher a parada ou a linha, sai do loop
-                break;
+                if (checkLinha(T.linha))                    // função que verifica se há essa linha cadastrada
+                {
+                    printf("OK\n");
+                }
+                else
+                {
+                    printf("Essa linha nao existe, digite novamente\n");
+                    aux2++;
+                }
 
-            printf("Digite o numero da linha: ");
-            fflush(stdin);
-            scanf("%d", &T.linha);
+            } while (!checkLinha(T.linha));
 
-            if (checkLinha(T.linha))                    // função que verifica se há essa linha cadastrada
+            do
             {
-                printf("OK\n");
-            }
-            else
-            {
-                printf("Essa linha nao existe, digite novamente\n");
-                aux2++;
-            }
+                if (aux1 == 3 || aux2 == 3 || aux3 == 3)     // 3 tentativas de cadastrar paradas, linhas ou horario, sao do loop
+                    break;
 
-        } while (!checkLinha(T.linha));
+                printf("Digite o horario (00:00): ");
+                fflush(stdin);
+                scanf("%d:%d", &T.hora, &T.min);
 
-        do
-        {
-            if (aux1 == 3 || aux2 == 3 || aux3 == 3)     // 3 tentativas de cadastrar paradas, linhas ou horario, sao do loop
-                break;
+                if (T.hora < 0 || T.hora > 23 || T.min < 0 || T.min > 59)   // verifica se a hora é valida
+                    printf("Esse horario nao existe, digite novamente\n");
 
-            printf("Digite o horario (00:00): ");
-            fflush(stdin);
-            scanf("%d:%d", &T.hora, &T.min);
+                
+                if (T.hora < 0 || T.hora > 23 || T.min < 0 || T.min > 59)
+                    aux3++;
 
-            if (T.hora < 0 || T.hora > 23 || T.min < 0 || T.min > 59)   // verifica se a hora é valida
-                printf("Esse horario nao existe, digite novamente\n");
+            } while (T.hora < 0 || T.hora > 23 || T.min < 0 || T.min > 59);
 
             if (checkTrajeto(T.parada, T.hora, T.min))
-                printf("Trajeto ja cadastrado, ou horario icompativel com a realidade\n");  // verifica se ja tem um trajeto igual
+                printf("Trajeto ja cadastrado ou horario incompativel com a realidade!\n\nRepita o procedimento!\n\n");
 
-            aux3++;
+        }while (checkTrajeto(T.parada, T.hora, T.min));
 
-        } while (T.hora < 0 || T.hora > 23 || T.min < 0 || T.min > 59 || checkTrajeto(T.parada, T.hora, T.min));
 
         if (aux1 < 3 && aux2 < 3 && aux3 < 3)   //se nao acabar as tentativas, ele cadastra
         {
             fprintf(file, "%d;%d;%.2d;%.2d\n", T.parada, T.linha, T.hora, T.min);
 
-            printf("Trajeto cadastrado com sucesso!\n");
+            printf("\nTrajeto cadastrado com sucesso!\n");
         }
         else if (aux3 == 3)                             // se acabar as tentativas de horario
             printf("\nTentantivas expiradas!\n");

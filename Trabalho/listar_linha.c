@@ -20,7 +20,7 @@ void listarLinha()
     }
     else
     {
-        printf("Nao foi possivel abrir o arquivo, cadastre uma linha antes!\n");
+        printf("\nCadastre uma linha antes!\n");
     }
     
     fclose(file);

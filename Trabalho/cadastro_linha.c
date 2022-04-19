@@ -25,12 +25,15 @@ void cadastroLinha()
             if (checkLinha(L.id))
                 printf("Linha ja cadastrada, digite novamente\n");
 
-        } while (checkLinha(L.id));                                     // fumcao que verifica se já tem a linha cadastrada
+            if (L.id <= 0)
+                printf("Linha inexistente, digite novamente!\n");
+
+        } while (checkLinha(L.id) || L.id <= 0);                                     // fumcao que verifica se já tem a linha cadastrada
 
         
         fprintf(file, "%d\n", L.id);
 
-        printf("Linha cadastrada com sucesso!\n");
+        printf("\nLinha cadastrada com sucesso!\n");
 
         fclose(file);                                                   // fecha o arquivo
     }

@@ -5,7 +5,7 @@ struct trajeto2                          // variaveis para o trajeto
     int parada, linha, hora, min;
 };
 
-void passaLinha(int id)
+void passaLinha(int id)  // função responsável por printar as linhas e horarios que passam em cada parada
 {
     FILE *file;
     struct trajeto2 T;
@@ -26,7 +26,7 @@ void passaLinha(int id)
     fclose(file);           // fecha o arquivo
 }
 
-void passaParada(int id)
+void passaParada(int id)    // função responsável por printar as todas as paradas que cada linha passa
 {
     FILE *file;
     struct trajeto2 T;
@@ -37,9 +37,9 @@ void passaParada(int id)
     {
         while (fscanf(file, "%d;%d;%d;%d", &T.parada, &T.linha, &T.hora, &T.min) != EOF)  // armazena os valores em variaveis
         {
-            if (T.linha== id)          // verifica se a linha é igual a que entrou na funcao
+            if (T.linha == id)          // verifica se a linha é igual a que entrou na funcao
             {
-                printf(" (Parada: %d) ", T.parada);   // printa junto as linhas, as paradas que elas passam
+                printf(" (Parada: %d) ", T.parada);   // printa junto com as linhas, as paradas que elas passam
             }   
         }
     }

@@ -73,7 +73,7 @@ void cadastroParada()
         
         fprintf(file, "%d;%.3f;%.3f\n", P.id, P.x, P.y);
 
-        printf("Cadastrado com sucesso!\n");
+        printf("\nCadastrado com sucesso!\n");
 
         fclose(file);
     }

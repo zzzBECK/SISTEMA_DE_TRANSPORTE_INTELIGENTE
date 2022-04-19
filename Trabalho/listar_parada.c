@@ -14,13 +14,15 @@ void listarParada()
         while (fscanf(file, "%d;%f;%f", &P.id, &P.x, &P.y) != EOF)       // armazena os valores em variaveis
         {
             printf("Id: %d  Latitude: %.3f  Longitude: %.3f", P.id, P.x, P.y);  //printa os valore que estao nas variaveis
-            passaLinha(P.id);                               // função que printa as linhas e horarios que passam na parada
+            passaLinha(P.id);  // função que printa as linhas e horarios que passam na parada, esta no arquivo listar_trajeto.c
             printf("\n");
             
         }
     }
     else
     {
-        printf("Nao foi possivel abrir o arquivo, cadastre uma parada antes!\n");
+        printf("\nCadastre uma parada antes!\n");
     }
+
+    fclose(file);
 }

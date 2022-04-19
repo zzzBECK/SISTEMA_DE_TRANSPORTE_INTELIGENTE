@@ -5,25 +5,30 @@
 #include "cadastro_trajeto.c"
 #include "listar_parada.c"
 #include "listar_linha.c"
+#include "excluir_parada.c"
+#include "excluir_linha.c"
 #define CADASTRAR_PARADA 1
 #define CADASTRAR_LINHA 2
 #define CADASTRAR_TRAJETO 3
 #define LISTAS_PARADA 4
 #define LISTAR_LINHAS 5
+#define EXCLUIR_PARADA 6
+#define EXCLUIR_LINHA 7
 #define SAIR 8
 
 int sgplMenu()
 {
     int n, aux;
 
-    printf ("\n1) Cadastrar Parada de Onibus\n" // mostra o menu no console
+    printf ("\n    MENU SGPL\n"
+            "\n1) Cadastrar Parada de Onibus\n" // mostra o menu no console
             "2) Cadastrar Linha de Onibus\n"
             "3) Cadastrar Trajeto\n"
             "4) Listar Paradas Cadastradas\n"
             "5) Listar Linhas Cadastradas\n"
             "6) Excluir Parada de Onibus\n"
             "7) Excluir Linha de Onibus\n"
-            "8) Encerrar Programa\n"
+            "8) Sair\n"
             "\nInsira o valor da opcao: ");
 
     do
@@ -66,14 +71,14 @@ int sgplMenu()
             listarLinha();  // chama a função do listar_parada.c
             return 1;
 
-        case 6:
+        case EXCLUIR_PARADA:
 
-            printf("Not Available\n");  // ainda nao funcionado
+            excluirParada();
             return 1;
 
-        case 7:
+        case EXCLUIR_LINHA:
 
-            printf("Not Available\n");  // ainda nao funcionado
+           excluirLinha();
             return 1;
 
         case SAIR:  // encerra a execução do programa
