@@ -1,45 +1,54 @@
 #include <stdio.h>
 
+//exclui os trajetos vinculados à alguma parada que foi excluida
 void excluirTrajetoP(int opcao)
 {
     FILE *file, *tempFile;
-    int parada, linha, hora, min;
+    struct trajeto t;
 
     file = fopen("trajetos.txt", "r");
     tempFile = fopen("trajetos.temp", "a");
 
+    //verfica se os arquivos existem
     if (file != NULL && tempFile != NULL)
     {
-        while (fscanf(file, "%d;%d;%d;%d", &parada, &linha, &hora, &min) != EOF)
+        //loop para armazenar os valores contidos no arquivo
+        while (fscanf(file, "%d;%d;%d;%d", &t.parada, &t.linha, &t.hora, &t.min) != EOF)
         {
-            if (parada != opcao)
-                fprintf(tempFile, "%d;%d;%.2d;%.2d\n", parada, linha, hora, min);
+            //verificação para copiar todo o conteúdo do primeiro arquivo, com excessão daqueles vinculado a uma parada excluida
+            if (t.parada != opcao)
+                fprintf(tempFile, "%d;%d;%.2d;%.2d\n", t.parada, t.linha, t.hora, t.min);
         }
     }
 
+    //apaga o arquivo antigo e renomeia o novo arquivo com o mesmo nome do antigo
     fclose(file);
     remove("trajetos.txt");
     fclose(tempFile);
     rename("trajetos.temp", "trajetos.txt");
 }
 
+//exclui os trajetos vinculados à alguma linha que foi excluida
 void excluirTrajetoL(int opcao)
 {
     FILE *file, *tempFile;
-    int parada, linha, hora, min;
+    struct trajeto t;
 
     file = fopen("trajetos.txt", "r");
     tempFile = fopen("trajetos.temp", "a");
 
+    //verifica se os arquivos existem
     if (file != NULL && tempFile != NULL)
     {
-        while (fscanf(file, "%d;%d;%d;%d", &parada, &linha, &hora, &min) != EOF)
+        //verificação para copiar todo o conteúdo do primeiro arquivo, com excessão daqueles vinculado a uma linha excluida
+        while (fscanf(file, "%d;%d;%d;%d", &t.parada, &t.linha, &t.hora, &t.min) != EOF)
         {
-            if (linha != opcao)
-                fprintf(tempFile, "%d;%d;%.2d;%.2d\n", parada, linha, hora, min);
+            if (t.linha != opcao)
+                fprintf(tempFile, "%d;%d;%.2d;%.2d\n", t.parada, t.linha, t.hora, t.min);
         }
     }
-
+    
+    //apaga o arquivo antigo e renomeia o novo arquivo com o mesmo nome do antigo
     fclose(file);
     remove("trajetos.txt");
     fclose(tempFile);

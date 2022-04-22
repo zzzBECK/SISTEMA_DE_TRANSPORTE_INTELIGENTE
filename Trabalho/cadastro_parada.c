@@ -1,22 +1,18 @@
 #include <stdio.h>
 #include "check_id.c"
 #include "check_cord.c"
-
-struct parada                // variaveis para as paradas
-{
-    int id;
-    float x, y;
-};
-
+#include <math.h>
 
 void cadastroParada()
 {
     FILE *file;
     struct parada P;
     int aux;
+    float arredondado;
 
     file = fopen("paradas.txt", "a");
-
+   
+    //Verficia se o arquivo existe, como foi aberto para escrita, se ainda não existir ele será criado
     if(file != NULL)
     {
         do
@@ -30,17 +26,18 @@ void cadastroParada()
                 if (aux == 0)
                     printf("Essa parada nao existe, digite novamente\n");
                     
-            } while (aux == 0);                                                 // Verfica se o input é um numero
+            } while (aux == 0);
+            //loop para pegar o valor da parada que o usuario digitar
 
-
-            if (checkIdParada(P.id))                                            // funcao que verifica se a parada já está cadastrada
+            if (checkIdParada(P.id))
                 printf("Parada ja cadastrada, digite novamente\n");
                 
             
-            if (P.id <= 0)                                                      // Predefinição de que não exista paradas abaixo de 0
+            if (P.id <= 0)
                 printf("Essa parada nao existe, digite novamente\n");
 
-        } while(checkIdParada(P.id) || P.id <= 0);                              // Loop para que as condições à cima sejam cumpridas
+        } while (checkIdParada(P.id) || P.id <= 0);
+        //loop que verifica se o valor digiado é valido ou se a parada já foi cadastrada
         
         do
         {
@@ -48,29 +45,38 @@ void cadastroParada()
             {
                 fflush(stdin);
                 printf("Latitude: ");
-                aux = scanf("%f", &P.x);
+                aux = scanf("%f", &arredondado);
+
+                //ferramente para evitar arredondamento
+                P.x = floor(arredondado * 1000.0f) / 1000.0f;
 
                 if (aux == 0)
                     printf("Valor invalido, digite novamente\n");
 
-            } while (aux == 0);                                                 // verifica se é um numero
+            } while (aux == 0);
+            //loop para pegar a latitude da parada de acordo com o usuário
 
             do
             {
                 fflush(stdin);
                 printf("Longitude: ");
-                aux = scanf("%f", &P.y);
+                aux = scanf("%f", &arredondado);
+
+                P.y = floor(arredondado * 1000.0f) / 1000.0f;
 
                 if (aux == 0)
                     printf("Valor invalido, digite novamente\n");
 
-            } while (aux == 0);                                                 // verifica se é um numero
+            } while (aux == 0);
+            //loop para pegar a longitude da parada de acordo com o usuário
 
-            if (checkCordParada(P.x, P.y))                                      // funcao que verifica que se outra parada ja tem essas coordenadas
+            if (checkCordParada(P.x, P.y))
                 printf("Posicao cadastrada com outra parada, digite novamente\n");
 
         } while (checkCordParada(P.x, P.y));
+        //loop que verifica se a coordenada ja foi cadastrada
         
+        //armazena no arquivo "paradas.txt" os valores escolhidos pelo usuário
         fprintf(file, "%d;%.3f;%.3f\n", P.id, P.x, P.y);
 
         printf("\nCadastrado com sucesso!\n");

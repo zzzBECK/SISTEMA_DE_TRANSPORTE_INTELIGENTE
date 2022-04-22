@@ -5,17 +5,25 @@ void listarLinha()
     FILE *file;
     struct linha L;
 
-    file = fopen("linhas.txt", "r");        // abre o arquivo para leitrua
+    //abre o arquivo para leitura
+    file = fopen("linhas.txt", "r");
 
+    //verifica se o arquivo existe
     if (file != NULL)
     {
         printf("LINHAS CADASTRADAS:\n\n");
+        printf("-------------------------------------------------------\n\n");
 
-        while (fscanf(file, "%d", &L.id) != EOF)   // armazena os valores na variavel
+        //armazena os valores contido no arquivo em uma variável
+        while (fscanf(file, "%d", &L.id) != EOF)
         {
-            printf("Id: %d", L.id);                // printa a variavel
-            passaParada(L.id);                     // função que printa as paradas que a linha passa
+            //printa na tela o valor da variável através de um loop
+            printf("Id: %d", L.id);
+            
+            //função que printa em quais paradas a linha passa, junto com o horário(pedido do professor em aula)*
+            passaParada(L.id);
             printf("\n");
+            printf("-------------------------------------------------------\n\n");
         }
     }
     else

@@ -4,7 +4,7 @@
     turma de Algoritmos e Programação de Computadores é considerada como plágio, constituindo-se
     em grave falta ética e estará sujeita a penalizações na avaliação, incluindo reprovação na disciplina.
 */
-
+#include "211061350.h"
 #include "sgpl_menu.c"
 #include "sut_menu.c"
 #define SGPL 1
@@ -16,8 +16,9 @@ int main()
 
     int opcao, aux;
 
-    while (opcao != 3) // Loop que so fecha se for digitado 8 no menu
+    while (opcao != 3)
     {
+        // Mostra na tela o menu principal
         printf("\n----------------------------------------\n");
         printf("1) Menu SGPL\n2) Menu SUT\n3) Encerrar Programa\n\nInsira o valor da opcao: ");
 
@@ -30,15 +31,17 @@ int main()
                 printf("Valor invalido, insira novamente: ");
 
         } while(aux == 0 || opcao < 1 || opcao > 3);
+        //loop para pegar a opção do usuário
 
-
+        //limpa o console
         system("cls || clear");
 
         if (opcao == SGPL)
         {
             while (1)
             {
-                if (!sgplMenu()) // abre o menu SGPL localizado no arquivo sgpl_menu.c
+                // abre o menu SGPL localizado no arquivo "sgpl_menu.c"
+                if (!sgplMenu())
                     break;
             }
 
@@ -48,6 +51,7 @@ int main()
         {
             while (1)
             {
+                // abre o menu SUT localizado no arquivo "sut_menu.c"
                 if (!sutMenu())
                     break;
             }

@@ -1,31 +1,29 @@
-#define TAM_MAX 100
+#include <stdio.h>
 
 int checkIdParada(int id)
 {
     FILE *file;
-    int numero[TAM_MAX], tamanho = 0;
-    float lixo;
+    struct parada p;
 
     file = fopen("paradas.txt", "r");
 
+    //verifica se o arquivo existe
     if (file != NULL)
     {
-        while (fscanf(file, "%d;%f;%f", &numero[tamanho], &lixo, &lixo) != EOF)   // armazena os numeros das paradas em um vetor
+        //leitura do arquivo e armazenamento dos valores em variáveis
+        while (fscanf(file, "%d;%f;%f", &p.id, &p.x, &p.y) != EOF)
         {
-            tamanho++;   // variavel para a posição do vetor
+            //verifica se o numero da parada já é cadastrado
+            if (p.id == id)
+            {
+                fclose(file);
+                return 1;
+            }
+
         }
     }
 
     fclose(file);
-
-    for (int i = 0; i < tamanho; i++)
-    {
-        if (numero[i] == id)                    // verifica se o novo id digitado seja igual a alguns dos valores do vetor
-        {
-            return 1;
-        }
-    }
-
 
     return 0;
 }

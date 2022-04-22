@@ -3,19 +3,21 @@
 int checkCordParada(float x, float y)
 {
     FILE *file;
-    int tamanho = 0, lixo;
-    float X, Y;
+    struct parada p;
 
     file = fopen("paradas.txt", "r");
 
+    //verifica se o arquivo existe
     if (file != NULL)
     {
-        while (fscanf(file, "%d;%f;%f", &lixo, &X, &Y) != EOF)  // armazena as cordenadas em variaveis
+        //leitura do arquivo e armazenamento dos valores em variáveis
+        while (fscanf(file, "%d;%f;%f", &p.id, &p.x, &p.y) != EOF)
         {
-            if (x == X && y == Y)                               // verifica se elas são iguais as digitadas
+            //verificação se caso as coordenadas sejam iguais às cadastradas
+            if (x == p.x && y == p.y)
             {
                 fclose(file);
-                return 1;                                       // retorna 1 caso os valores digitados sejam identicos aos cadastrados
+                return 1;
             }
         }
     }

@@ -1,48 +1,61 @@
 #include <stdio.h>
 
-struct trajeto2                          // variaveis para o trajeto
-{
-    int parada, linha, hora, min;
-};
-
-void passaLinha(int id)  // função responsável por printar as linhas e horarios que passam em cada parada
+// função responsável por printar as linhas e horarios que passam em cada parada
+void passaLinha(int id)
 {
     FILE *file;
-    struct trajeto2 T;
+    struct trajeto T;
 
-    file = fopen("trajetos.txt", "r");          // abre o arquivo para leitura
+    // abre o arquivo para leitura
+    file = fopen("trajetos.txt", "r");
 
+    //verifica se o arquivo existe
     if (file != NULL)
     {
-        while (fscanf(file, "%d;%d;%d;%d", &T.parada, &T.linha, &T.hora, &T.min) != EOF)  // armazena os valores em variaveis
+        printf("\n\nLinhas e horarios que passam na parada:\n");
+        
+        //loop que armazena os valores contidos no arquivo em variáveis
+        while (fscanf(file, "%d;%d;%d;%d", &T.parada, &T.linha, &T.hora, &T.min) != EOF)
         {
-            if (T.parada == id)        // se a parada é igual a de algum trajeto  
+            // verifica se a parada é igual a que entrou na função
+            if (T.parada == id) 
             {
-                printf(" (Linha: %d  Horario: %.2d:%.2d) ", T.linha, T.hora, T.min); // printa junto com as paradas as linhas e horarios que passam
+                // printa junto com as paradas as linhas e horarios que passam
+                printf("(Linha: %d  Horario: %.2d:%.2d)\n", T.linha, T.hora, T.min); 
             }   
         }
     }
 
-    fclose(file);           // fecha o arquivo
+    // fecha o arquivo
+    fclose(file);
 }
 
-void passaParada(int id)    // função responsável por printar as todas as paradas que cada linha passa
+//função responsável por printar as todas as paradas que cada linha passa
+void passaParada(int id)
 {
     FILE *file;
-    struct trajeto2 T;
+    struct trajeto T;
     
-    file = fopen("trajetos.txt", "r");  // abre o arquivo para leitrua
+    // abre o arquivo para leitrua
+    file = fopen("trajetos.txt", "r");
 
+    //verifica se o arquivo existe
     if (file != NULL)
     {
-        while (fscanf(file, "%d;%d;%d;%d", &T.parada, &T.linha, &T.hora, &T.min) != EOF)  // armazena os valores em variaveis
+        printf("\n\nParadas que a linha passa:\n");
+
+        // loop que armazena os valores contidos no arquivo em variáveis
+        while (fscanf(file, "%d;%d;%d;%d", &T.parada, &T.linha, &T.hora, &T.min) != EOF)
         {
-            if (T.linha == id)          // verifica se a linha é igual a que entrou na funcao
+            // verifica se a linha é igual a que entrou na função
+            if (T.linha == id)
             {
-                printf(" (Parada: %d) ", T.parada);   // printa junto com as linhas, as paradas que elas passam
+                // printa junto com as linhas, as paradas que elas passam
+                printf("(Parada: %d Horario: %.2d:%.2d)\n", T.parada, T.hora, T.min);
             }   
         }
     }
     
-    fclose(file);           // fecha o arquivo
+    // fecha o arquivo
+    fclose(file);
 }

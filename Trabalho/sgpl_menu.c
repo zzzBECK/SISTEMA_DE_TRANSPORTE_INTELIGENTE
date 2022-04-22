@@ -20,8 +20,9 @@ int sgplMenu()
 {
     int n, aux;
 
+    // mostra as opções do menu para o usuário
     printf ("\n    MENU SGPL\n"
-            "\n1) Cadastrar Parada de Onibus\n" // mostra o menu no console
+            "\n1) Cadastrar Parada de Onibus\n"
             "2) Cadastrar Linha de Onibus\n"
             "3) Cadastrar Trajeto\n"
             "4) Listar Paradas Cadastradas\n"
@@ -40,49 +41,58 @@ int sgplMenu()
             printf("Valor invalido, digite novamente: ");
 
 
-    }while (aux == 0 || n < 1 || n > 8); // verifica se o valor esta dentro do intervalo ou se não é um numero
+    }while (aux == 0 || n < 1 || n > 8);
+    //loop para pegar a opção do usuário
 
+    //limpa as informações do console (apaga tudo)
     system("cls || clear");
 
     switch (n)
     {
         case CADASTRAR_PARADA:
 
-            cadastroParada();   // chama a função do cadastro_parada.c
+            // chama a função do "cadastro_parada.c"
+            cadastroParada();
             return 1;
 
         case CADASTRAR_LINHA:
 
-            cadastroLinha();    // chama a função do cadastro_linha.c
+            // chama a função do "cadastro_linha.c"
+            cadastroLinha();
             return 1;
 
         case CADASTRAR_TRAJETO:
 
-            cadastroTrajeto();  // chama a função do cadastro_trajeto.c
+            // chama a função do "cadastro_trajeto.c"
+            cadastroTrajeto();
             return 1;
 
         case LISTAS_PARADA:
 
-            listarParada(); // chama a função do listar_parada.c
+            // chama a função do "listar_parada.c"
+            listarParada();
             return 1;
 
         case LISTAR_LINHAS:
 
-            listarLinha();  // chama a função do listar_parada.c
+            // chama a função do "listar_parada.c"
+            listarLinha();
             return 1;
 
         case EXCLUIR_PARADA:
 
+            //chama a função do "excluir_parada.c"
             excluirParada();
             return 1;
 
         case EXCLUIR_LINHA:
 
+            //chama a função do "excluir_linha.c"
            excluirLinha();
             return 1;
 
-        case SAIR:  // encerra a execução do programa
-
+        case SAIR:
+            //retorna para o menu principal
             return 0;
             
     }

@@ -1,28 +1,28 @@
 #include <stdio.h>
-#define TAM_MAX 100
 
 int checkLinha(int id)
 {
     FILE *file;
-    int tamanho = 0, numeros[TAM_MAX];
+    struct linha L;
 
-    file = fopen("linhas.txt", "r");                                // abre o arquivo para leitura
+    file = fopen("linhas.txt", "r");
 
+    //verifica se o arquivo existe
     if (file != NULL)
     {
-        while (fscanf(file, "%d", &numeros[tamanho]) != EOF)        // loop para armazenar as linhas em um vetor
+        //leitura do arquivo e armazenmanto dos valores em variáveis
+        while (fscanf(file, "%d", &L.id) != EOF)
         {
-            tamanho++;
+            //verificação se a linha digitada já foi cadastrada anteriormente
+            if (id == L.id)
+            {
+                fclose(file);
+                return 1;
+            }
         }
     }
 
     fclose(file);
-
-    for (int i = 0; i < tamanho; i++)
-    {
-        if (id == numeros[i])                                       // verifica se a linha digitada é igual à alguma linha contida no vetor
-            return 1;
-    }
 
     return 0;
 
